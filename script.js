@@ -36,26 +36,47 @@ function fillGrid(books) {
         buttonGroup.classList.add('button-group');
         readBtn.classList.add('btn');
         removeBtn.classList.add('btn');
-        readBtn.addEventListener('click', toggleRead);
-        removeBtn.addEventListener('click', removeBook);
+        readBtn.addEventListener('click', () => toggleRead(books[i].id));
+        removeBtn.addEventListener('click', () => removeBook(books[i].id));
 
         title.textContent = `"${books[i].title}"`;
         author.textContent = books[i].author;
         pages.textContent = `${books[i].pages} pages`;
-        readBtn.textContent = 'Read';
+
+        if (books[i].isRead) {
+            readBtn.textContent = 'Read';
+            readBtn.classList.add('btn-light-green');
+        }
+        else {
+            readBtn.textContent = 'Not read';
+            readBtn.classList.add('btn-light-red');
+        }
+
         removeBtn.textContent = 'Remove';
-
-
         booksGrid.append(bookCard);
     }
 }
 
-function toggleRead() {
+function toggleRead(bookId) {
+    for (let i = 0; i < books.length; i++) {
+        if (books[i].id === bookId) {
+            books[i].isRead = !books[i].isRead;
+            break;
+        }
+    }
 
+    fillGrid(books);
 }
 
-function removeBook() {
+function removeBook(bookId) {
+    for (let i = 0; i < books.length; i++) {
+        if (books[i].id === bookId) {
+            books.splice(i, 1);
+            break;
+        }
+    }
 
+    fillGrid(books);
 }
 
 function submitForm(e) {
