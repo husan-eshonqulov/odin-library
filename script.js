@@ -1,6 +1,6 @@
 const addBookModal = document.querySelector('#addBookModal');
 const addBookBtn = document.querySelector('#addBookBtn');
-const submitBtn = document.querySelector('#submitBtn');
+const addBookForm = document.querySelector('#addBookForm');
 const overlay = document.querySelector('#overlay');
 const title = document.querySelector('#title');
 const author = document.querySelector('#author');
@@ -12,18 +12,7 @@ const books = [];
 addBookBtn.addEventListener('click', openAddBookModal);
 overlay.addEventListener('click', closeAddBookModal);
 
-submitBtn.addEventListener('click', (e) => {
-    books.push({
-        title: title.value,
-        author: author.value,
-        pages: pages.value,
-        isRead: isRead.checked,
-    });
-
-    // closeAddBookModal();
-    // fillBooksGrid();
-    e.preventDefault();
-});
+addBookForm.addEventListener('submit', (e) => { e.preventDefault() })
 
 function openAddBookModal() {
     addBookModal.classList.add('active');
