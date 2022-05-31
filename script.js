@@ -20,8 +20,8 @@ submitBtn.addEventListener('click', (e) => {
         isRead: isRead.checked,
     });
 
-    closeAddBookModal();
-    fillBooksGrid();
+    // closeAddBookModal();
+    // fillBooksGrid();
     e.preventDefault();
 });
 
